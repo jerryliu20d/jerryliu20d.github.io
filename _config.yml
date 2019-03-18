@@ -4,7 +4,7 @@ SEOTitle: 小生的博客 | Jerry Blog
 header-img: img/post-bg-desk.jpg
 email: jerryliu20d@gmail.com
 description: "If debugging is the process of removing bugs, programming must be the process of putting them in~"
-keyword: "Jerry Liu, Jerry Blog, 小生的博客, lijieliu, 邱柏荧, algorithm， python"
+keyword: "Jerry Liu, Jerry Blog, 小生的博客, lijieliu, algorithm， python"
 url: "http://jerryliu20d.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository

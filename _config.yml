@@ -1,10 +1,10 @@
 # Site settings
 title: Jerry Blog
-SEOTitle: 小生的博客 | Jerry Blog
+SEOTitle: Easy Code | Jerry Blog
 header-img: img/post-bg-desk.jpg
 email: jerryliu20d@gmail.com
 description: "If debugging is the process of removing bugs, programming must be the process of putting them in~"
-keyword: "Jerry Liu, Jerry Blog, 小生的博客, lijieliu, algorithm， python"
+keyword: "Jerry Liu, Jerry Blog, lijieliu, algorithm， python"
 url: "http://jerryliu20d.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code repository
@@ -12,7 +12,7 @@ github_repo: "https://github.com/qiubaiying/qiubaiying.github.io.git" # you code
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Talk is cheap. Show some codes."
-sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/mypic.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -57,16 +57,16 @@ kramdown:
 
 # 评论系统
 # Disqus（https://disqus.com/）
-disqus_username: jerryliu20d
+# disqus_username: jerryliu20d
 
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: f2c84e7629bb1446c1a4                            #生成的clientID
-  clientSecret: ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d    #生成的clientSecret
-  repo: qiubaiying.github.io    #仓库名称
-  owner: qiubaiying    #github用户名
-  admin: qiubaiying
+  clientID: 6f821b0aeb594aeb6ff5                            #生成的clientID
+  clientSecret: 6d4bd4a734e2d8c3266cf1ace09394c892733679    #生成的clientSecret
+  repo: jerryliu20d.github.io    #仓库名称
+  owner: jerryliu20d    #github用户名
+  admin: jerryliu20d
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 

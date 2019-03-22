@@ -57,7 +57,7 @@ From the above codes we will find that the `EXISTS` is preferred when table B is
 
 We still use the previous table. But we use `IN` instead.
 
-```SQL
+```Sql
 SELECT ID, NAME FROM A IN (SELECT UID FROM B)
 ```
 

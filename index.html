@@ -5,6 +5,7 @@ description: "Think like a Bayesian, worry like a frequentist."
 
 {% for post in paginator.posts %}
 <div class="post-preview">
+<link rel="stylesheet" href="css/syntax.css">
     <a href="{{ post.url | prepend: site.baseurl }}">
         <h2 class="post-title">
             {{ post.title }}
@@ -24,7 +25,6 @@ description: "Think like a Bayesian, worry like a frequentist."
 </div>
 <hr>
 {% endfor %}
-
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
 <ul class="pager">

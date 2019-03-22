@@ -57,7 +57,7 @@ From the above codes we will find that the `EXISTS` is preferred when table B is
 
 We still use the previous table. But we use `IN` instead.
 
-```SQL
+```sql
 SELECT ID, NAME FROM A IN (SELECT UID FROM B)
 ```
 
@@ -72,4 +72,44 @@ for i in range(len(A)):
 return result
 ```
 
-The function `IN` will only be executed once, but it will traversal all elements in A and B, which may takes $a_2$
+The function `IN` will only be executed once, but it will traversal all elements in A and B, which may takes $O(mn)$.
+
+# A small example
+
+Suppose we have the following table:
+
+|Amount|Product|Price|Date|
+|--|--|--|--|
+|1|Rice Ball|1.99|2019-03-22|
+|1|Soy Drink|3.69|2019-03-23|
+|1|Pork Sung|13.99|2019-03-24|
+|2|Hot Chili|4.99|2019-03-21|
+|2|Mushroom|0.59|2019-03-22|
+
+We want to find the data with newest date for each amount.
+
+```sql
+SELECT Amount, Product, Price, Date
+FROM table t
+WHERE (NOT EXISTS
+          (SELECT Amount, Product, Price, Date FROM table 
+         WHERE Amount = t.Amount AND Date > t.Date))
+```
+|Amount|Product|Price|Date|
+|--|--|--|--|
+|1|Pork Sung|13.99|2019-03-24|
+|2|Mushroom|0.59|2019-03-22|
+
+If we use `DISTINCT`, we will still get the raw table, because the `DISTINCT` will apply on all selected columns.
+
+```sql
+SELECT DISTINCT Amount, Product, Price, Date FROM table
+```
+
+|Amount|Product|Price|Date|
+|--|--|--|--|
+|1|Rice Ball|1.99|2019-03-22|
+|1|Soy Drink|3.69|2019-03-23|
+|1|Pork Sung|13.99|2019-03-24|
+|2|Hot Chili|4.99|2019-03-21|
+|2|Mushroom|0.59|2019-03-22|

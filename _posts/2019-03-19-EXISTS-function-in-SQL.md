@@ -71,6 +71,5 @@ for i in range(len(A)):
             break
 return result
 ```
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
-The function `IN` will only be executed once, but it will traversal all elements in A and B, which may takes $O(m,n)$
+The function `IN` will only be executed once, but it will traversal all elements in A and B, which may takes $a_2$

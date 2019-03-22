@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      EXISTS functiuon in SQL
+title:      EXISTS function in SQL
 subtitle:   
 date:       2019-03-18
 author:     Jerry Liu
@@ -73,4 +73,4 @@ return result
 ```
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
-The function `IN` will only be executed once, but it will traversal all elements in A and B, which may takes $$24124$$
+The function `IN` will only be executed once, but it will traversal all elements in A and B, which may takes $O(m,n)$

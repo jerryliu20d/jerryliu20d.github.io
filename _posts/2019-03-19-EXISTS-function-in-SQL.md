@@ -95,6 +95,7 @@ WHERE (NOT EXISTS
           (SELECT Amount, Product, Price, Date FROM table 
          WHERE Amount = t.Amount AND Date > t.Date))
 ```
+
 |Amount|Product|Price|Date|
 |--|--|--|--|
 |1|Pork Sung|13.99|2019-03-24|

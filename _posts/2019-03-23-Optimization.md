@@ -43,6 +43,48 @@ to update x as
 
 $$x_{n+1}=x_{n}−η∇f_B(x)$$
 
+# Momentum
+
+SGD has trouble navigating ravines, i.e. areas where the surface curves much more steeply in one dimension than in another , which are common around local optima. 
+
+![SGD]({{site.baseurl}}/img/adagrad1.jpg)
+
+Momentum is a method that helps accelerate SGD in the relevant direction and dampens oscillations. It does this by adding a fraction $$μ$$ of the update vector of the past time step to the current update vector:
+
+$$v_{n+1}=μv_n-∇f(x_n)\\
+x_{n+1}=x_n-γv_{n+1}$$
+
+We usually set $μ$ as 0.9 or similar value. From the formula we find that $$μ$$ can accelerate speed at the very begining and reduce the change in oriention in ravines. Sometimes, it can jump out of the local minimum sine $$μ$$ gives a great acceleration.
+
+# Nesterov accelerated gradient (NAG)
+
+However, a ball that rolls down a hill, blindly following the slope, is highly unsatisfactory. We'd like to have a smarter ball, a ball that has a notion of where it is going so that it knows to slow down before the hill slopes up again. 
+
+Nesterov accelerated gradient (NAG) is a way to give our momentum term this kind of prescience. We know that we will use our momentum term $$γv_n$$ to move the parameters $$x_n$$. Computing $x_n−γv_n$ thus gives us an approximation of the next position of the parameters (the gradient is missing for the full update), a rough idea where our parameters are going to be. We can now effectively look ahead by calculating the gradient not w.r.t. to our current parameters $$x_n$$ but w.r.t. the approximate future position of our parameters:
+
+$$v_{n+1} = μv_n+∇f(x_n-γv_n)\\
+x_{n+1}=x_n-γv_{n+1}$$
+
+Again, we set the momentum term γ to a value of around 0.9. While Momentum first computes the current gradient (small blue vector in Image 4) and then takes a big jump in the direction of the updated accumulated gradient (big blue vector), NAG first makes a big jump in the direction of the previous accumulated gradient (brown vector), measures the gradient and then makes a correction (red vector), which results in the complete NAG update (green vector). This anticipatory update prevents us from going too fast and results in increased responsiveness, which has significantly increased the performance of RNNs on a number of tasks.
+
+![NAG]({{site.baseurl}}/img/nag1.jpg)
+
+See [Convolutional Neural Networks](http://cs231n.github.io/neural-networks-3/) for another ituitive explanation of NAG.
+
+# Adagrad
+
+In machine learning, we should not always set learning rating manually. Usually we use Adaptive learning rate. Here we introduce adagrad. Let 
+
+$$g_n=∇f(x_n)\ℂ 
+G_n=diag(g_n^2)\\
+δ<<0\\
+r=r+G_n\\
+x_{n+1} = x_n-\frac{γ}{δ+\sqrt{r}}g_n$$
+
+With adagrad, now we will converge more quickly.
+
+![Adagrad]({{site.baseurl}}/img/adagrad2.jpg)
+
 # Newton's Method
 
 Suppose we want to reach the global minimizer of $f$ with parameter x. Suppose, we have an estimate $x_n$ and we wangt out next estimate $x_{n+1}$ to have the property that $f(x_{n+1})\lt f(x_n)$. Newton's method use the taylor expansion:

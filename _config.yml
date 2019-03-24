@@ -97,11 +97,11 @@ service-worker: true
 
 
 # Friends
-# friends: [
-#     {
-#         title: "WY",
-#         href: "http://zhengwuyang.com"
-#     },{
+friends: [
+     {
+         title: "Kehui Blog",
+         href: "https://kehuiyao.github.io/"
+     }
 #         title: "简书·BY",
 #         href: "http://www.jianshu.com/u/e71990ada2fd"
 #     },{
@@ -111,4 +111,4 @@ service-worker: true
 #         title: "Apple Developer",
 #         href: "https://developer.apple.com/"
 #     }
-# ]
+]

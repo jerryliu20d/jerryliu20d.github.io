@@ -2,7 +2,7 @@
 layout:     post
 title:      Founadation of Machine Learning Part II
 subtitle:   
-date:       2019-03-23
+date:       2019-03-30
 author:     Jerry Liu
 header-img: img/post2-bg-1.jpg
 catalog: true

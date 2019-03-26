@@ -264,18 +264,18 @@ Ending: oscillating around local (global) minimum
 In the end will not git rid of local minimum, but you can switch to the momentum SGD to jump out the local minimum. If you switch back to AdaDelta later, it is still stuck in another local minimum. So the total accuracy may not change if you combine AdaDelta and momentum SGD. It also tells us why the simple SGD is still in the state of art.
 Use adaptive learning rate.
 
-# RMSprop
+#### RMSprop
 
 Good at unstable optimization function like RNN.(Need to learn)[??????]
 Still need hyperparameter.
 
-# Adam
+#### Adam
 
 Combine Momentum SGD (handle unstable optimization) and Adagrad (handle sparse gradient).
 Need less memory.
 Can handel non-convex problem and high dimension data.
 
-# AdaMax
+#### AdaMax
 
 Handle sparse parameter updates like word embeddings.
 

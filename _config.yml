@@ -101,6 +101,9 @@ friends: [
      {
          title: "Kehui Blog",
          href: "https://kehuiyao.github.io/"
+     },{
+         title: "Bii Blog",
+         href: "http://biiserver.herokuapp.com/"
      }
 #         title: "简书·BY",
 #         href: "http://www.jianshu.com/u/e71990ada2fd"

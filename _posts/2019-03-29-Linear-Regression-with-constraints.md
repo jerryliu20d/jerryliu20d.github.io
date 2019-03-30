@@ -53,7 +53,9 @@ I donot check the complementary slackness condition here. You can do it yourself
 From now on, I will recommend some music at the end of the post. Sometimes I will listen some music if I cannot focus on study. Music will stimulate your brain and make you work efficiently. But listen to music frequently while working will weaken thestimulation. So Listen to music scientificly:-)
 
 Today's Music:
+
 "僕が死のうと思ったのは" --- 中島 美嘉
+
 "Boku ga Shinou to Omotta no Wa" --- Mika Nakashima
 
 It can be simply translated as "I thought I would have died". But actually it is not a dark single. Mika said "You may not know the theme unless you listen it to the end" in the press conference. It describes sorrow in daily life. But the world is not hopeless because you still have a little happiness in hand. And here is another song "1-800-273-8255" --- Alessia Cara, Khalid (I also like it Aha). It conveys the similar idea. It encourage me sometimes when I'm in depression.

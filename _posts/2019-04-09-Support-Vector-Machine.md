@@ -68,7 +68,6 @@ $$L_x:f\in H\longrightarrow f(x)$$
 is a continuous map. in particular, 
 
 $$|f(x)-\tilde{f}(x)|\le C_x\Vert f-\tilde{f}\Vert,~~\forall f,\tilde{f}\in H$$
-[Questioned](..)
 
 By [Riesz representation theorem](https://en.wikipedia.org/wiki/Riesz_representation_theorem), there exists a unique $K_x\in H~~s.t.$ [Why need uniqueness?]()
 
@@ -76,9 +75,131 @@ $$f(x)=L_x(f)=\langle f,k_x\rangle_H,~~\forall f\in H$$.
 
 We can also pick $f=k_{\tilde{x}}$, that gives:
 
-$$K_{\tilde{x}}(x)=\langle k_{\tilde{x}},k_{x}\rangle_H$$
+$$k_{\tilde{x}}(x)=\langle k_{\tilde{x}},k_{x}\rangle_H$$
 
-Then we define $k(\tilde{x},x)=K_{\tilde{x}}(x)=\langle k_{\tilde{x}},k_{x}\rangle_H$, which is conformable with the kernel $k$. Finally, we define a function $𝜑:X\longrightarrow H$, $s.t.~𝜑(x)=k_x,~\forall x\in X$.
+Then we define $k(\tilde{x},x)=k_{\tilde{x}}(x)=\langle k_{\tilde{x}},k_{x}\rangle_H$, which is conformable with the kernel $k$. Finally, we define a function $𝜑:X\longrightarrow H$, $s.t.~𝜑(x)=k_x,~\forall x\in X$.
 
 > Kernel $⟹$ RKHS
 
+The result can be derived from [moore aronszajn theorem](https://en.wikipedia.org/wiki/Reproducing_kernel_Hilbert_space) directly. 
+
+We define a Hilbert space:
+
+$$H=\{\sum_{i=1}^\infty a_ik(\cdot,x_i)\}\\
+s.t.~\sum_{i=1}^\infty a_i^2k(x_i,x_i)<\infty$$
+
+,where $x_i\in X$, $a_i\in\mathcal{R}$. And the inner product is defined as:
+
+$$\langle\sum_{i=1}^\infty a_ik(\cdot,x_i),\sum_{i=1}^\infty b_jk(\cdot,y_i)\rangle_H≐\sum_{i=1}^\infty\sum_{j=1}^\infty a_ib_jk(x_i,x_j)$$.
+
+Then we check the reproducing property:
+
+$$
+\begin{aligned}
+\langle f,k(\cdot,x)\rangle_H&=\langle\sum_{i=1}^\infty a_ik(\cdot,x_i),k(\cdot,x)\rangle\\
+&=\sum_{i=1}^\infty a_ik(x,x_i)\\
+&=f(x)
+\end{aligned}
+$$
+
+To prove uniqueness, let $G$ be another Hilert space with reproducing kernel $k$. FOr any $x$ and $y$ in $X$, we have:
+
+$$\langle k_x,k_y\rangle_H=k(x,y)=\langle k_x,k_y\rangle_G$$, by completeness, it is unique.
+
+# Regularization
+
+In linear regression, when the $X$ matrix has the preoblem with illness, we usually use regularization. The idea is
+
+$$\min\limits_{f\in Z}J(f)=\lambda R(f)+\sum_{i=1}^n(f(x_i)-y_i)^2$$
+
+for some family of function $Z$ and regularization $R$.
+
+> Note that we cannot arbitrary choose one space. For example, we cannot use the $\mathcal{L}^2$ space (Lebesgue spaces), because for the point $x_i$, we cannot make sure $f(x_i)$ makes sense.
+
+We will choose RKHS and $R(f)=\Vert f\Vert_H^2$ at last, but here let us first choose a special case with $X=[0,1]$.
+
+We define Hilbert space:
+
+$$
+Z=\left\{
+\begin{aligned}
+&f:[0,1]\longrightarrow\mathcal{R}\\
+&s.t.~f(x)=\int_0^xf'(t)dt
+\end{aligned}
+\right\}
+$$
+
+And regularization function $R(f)=\int_0^1(f'(x))^2dx$.
+
+---
+How we solve optimization problem in euclidean space?
+
+We use derivation!
+
+$$\min\limits_{x\in\mathcal{R^m}}F(x)$$
+
+If the optimization point is $x^*$ and we know it is the same problem with
+
+$$\min\limits_{t\in\mathcal{R}}F(x^*+tv)$$
+
+,where the $v$ is constant in $\mathcal{R^m}$. [If the $x^*$ is not unique?]()
+
+Let $𝜑_v(t)=F(x^*+tv)$, then the minimum reach at $t=0$, i.e. 
+
+$$0=𝜑_v'(0)=\langle \nabla F(x^*),v\rangle$$
+
+> Use $\langle \nabla J(f^*),g\rangle=0$ to solve the optimization problem!
+
+$$
+\begin{aligned}
+𝜑_g'(t)\Big|_{t=0}=&0\\
+\lambda\int_0^1(f^*)'g'dx=&-\sum_{i=1}^n(f^*(x_i)-y_i)g(x_i)
+\end{aligned}
+$$
+
+This is so called Euler-Lagrange Equation. Then we will solve this equation by some tricks.
+
+1. $g=g_1$, where $g_1\doteq min\{x,x_1\}$
+
+   The E-L equation follows the following equations.
+
+    $$
+    \begin{aligned}
+    \lambda\int_0^{x_1}(f^*)'(t)dt=&\sum_{i=1}^n(f^*(x_i)-y_i)(x_i\wedge x_1)\\
+    \lambda f^*(x_1)-f^*(0)=&\sum_{i=1}^n(f^*(x_i)-y_i)(x_i\wedge x_1)\\
+    \lambda f^*(x_1)=&\sum_{i=1}^n(f^*(x_i)-y_i)(x_i\wedge x_1)
+    \end{aligned}
+    $$
+
+    Note that the last equation holds because we has already defined that $f(x)=\int_0^xf'(t)dt$. So $f^*(0)=0$.
+
+2. $g=g_j$, $g_j\doteq min\{x,x_j\}$, $for~j=1,\dots,n$
+
+   We have the same result:
+   $$
+   \lambda f^*(x_j)=\sum_{i=1}^n(f^*(x_i)-y_i)(x_i\wedge x_j)
+   $$
+<span id="loc1"></span>
+
+3. When $x>x_n$
+
+   Because we define the regularization term as $R(f)=\int_0^1(f'(x))^2dx$. We will just let $f'(x)=0$. That is a constant.
+
+> Actually, it is a piecewise linear function. We will show it by ${(f^*)'}'=0$
+
+Take $g\in Z:[0,1]\longrightarrow\mathcal{R}$ $s.t.~g(0)=0$ and $g(x)=0~~\forall x\ge x-1$. 
+
+Then we must have 
+
+$$
+\begin{aligned}
+\int_0^{x_1}(f^*)'g'dx&=0\\
+-\int_0^{x_1}(f^*)''gdx+(f^*)'g\Big|_0^{x_1}&=0\\
+-\int_0^{x_1}(f^*)''gdx&=0\\
+(f^*)''g&=0
+\end{aligned}
+$$
+
+This is for arbitrary $g\in Z$ satisfying the previous defined condtion. Thus ${(f^*)'}'=0$. 
+
+Until now we have proved that $f^*(x)$ in constant on $[0,x_1]$. It is the same for each interval on $[0,x_n]$. And for $x\in[x_n,1]$, we have already showed in [part 3](#loc1).

@@ -106,7 +106,7 @@ To prove uniqueness, let $G$ be another Hilert space with reproducing kernel $k$
 
 $$\langle k_x,k_y\rangle_H=k(x,y)=\langle k_x,k_y\rangle_G$$, by completeness, it is unique.
 
-# Regularization
+# Regularization in Special Case
 
 In linear regression, when the $X$ matrix has the preoblem with illness, we usually use regularization. The idea is
 
@@ -203,3 +203,17 @@ $$
 This is for arbitrary $g\in Z$ satisfying the previous defined condtion. Thus ${(f^*)'}'=0$. 
 
 Until now we have proved that $f^*(x)$ in constant on $[0,x_1]$. It is the same for each interval on $[0,x_n]$. And for $x\in[x_n,1]$, we have already showed in [part 3](#loc1).
+
+# Regularization in General Case
+
+For general case, the optimization problem is:
+
+$$\min_{f\in H}\lambda\Vert f\Vert_H^2+\sum_{i=1}^n(f(x_i)-y_i)^2$$
+
+, where $H$ is RKHS. Let $k:[0,1]*[0,1]\longrightarrow\mathcal{R}$, $k(x,\tilde{x})=min\{x,\tilde{x}\}$. By the [representor theorem](https://en.wikipedia.org/wiki/Representer_theorem), we have:
+
+$$f^*=\sum_{i=1}^na_i(\cdot\wedge x_i)$$
+
+We find it conincide with the previous result.
+
+# 

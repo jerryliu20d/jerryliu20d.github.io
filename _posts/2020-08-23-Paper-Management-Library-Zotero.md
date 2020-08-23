@@ -7,7 +7,7 @@ author:     Jerry Liu
 header-img: img/sync_Zotero/bg.jpg
 catalog: true
 tags:
-    - Zotero
+    - Literature management
 ---
 
 > Start your paper reading journey from Zotero!

@@ -104,6 +104,9 @@ friends: [
      },{
          title: "Bii Blog",
          href: "http://biiserver.herokuapp.com/"
+     },{
+         title: "Siyu Blog",
+         href:  "https://moran79.github.io/"
      }
 #         title: "简书·BY",
 #         href: "http://www.jianshu.com/u/e71990ada2fd"

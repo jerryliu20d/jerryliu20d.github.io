@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Cloud Sync via a Paper Management Library ":" Zotero
+title:      Cloud Sync via a Paper Management Library\: Zotero
 subtitle:   
 date:       2020-08-23
 author:     Jerry Liu
@@ -20,4 +20,5 @@ I am still discovering features in Zotero. I won't share tips about how to use Z
 
 # Setups
 
-I will just skip the installation of Zotero and Zotfile. Details are shown on official websites. But do remember to register an account and linked it with Zotero on your PC. In my case, I choose [Onedrive](https://onedrive.live.com/about/en-us/signin/). It's up to you to choose other clouds like google drive, dropbox and etc. After correctly installing Zotero and Zotfile, go to the Edit -> Preference. Uncheck the box "sync attachment files inusing Zotero storage" because we don't need official clouds to interupt us. ![Fig1]({{baseurl}}\img\sync_zotero\img1.png)
+I will just skip the installation of Zotero and Zotfile. Details are shown on official websites. But do remember to register an account and linked it with Zotero on your PC. In my case, I choose [Onedrive](https://onedrive.live.com/about/en-us/signin/). It's up to you to choose other clouds like google drive, dropbox and etc. After correctly installing Zotero and Zotfile, go to the Edit -> Preference. Uncheck the box "sync attachment files inusing Zotero storage" because we don't need official clouds to interupt us. 
+![Fig1]({{baseurl}}\img\sync_zotero\img1.png)

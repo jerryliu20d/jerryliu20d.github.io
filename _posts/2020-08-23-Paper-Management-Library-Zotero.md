@@ -22,10 +22,10 @@ I am still discovering features in Zotero. I won't share tips about how to use Z
 
 If following things is bothering you, Zotero may be a good solution
 
-1) Automatically sync files across platforms like: Windows, Android, Mac, Ipad, Iphone, etc
-2) Generate bibliographies in batch
-3) Search key words in a specific region(Title, Author, Year, Main text, Abstract, or even your own annotations)
-4) Download and manage literature metadata
+1) Automatically sync files across platforms like: Windows, Android, Mac, Ipad, Iphone, etc  
+2) Generate bibliographies in batch  
+3) Search key words in a specific region(Title, Author, Year, Main text, Abstract, or even your own annotations)  
+4) Download and manage literature metadata  
 5) Free
 
 # Setups

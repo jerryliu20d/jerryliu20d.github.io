@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Cloud Sync via a Paper Management Library\: Zotero
+title:      Cloud Sync via a Paper Management Library: Zotero
 subtitle:   
 date:       2020-08-23
 author:     Jerry Liu

@@ -28,6 +28,16 @@ The term "upstacking" means put every pieces on remainders without holes or gaps
 
 ![upstacking3]({{baseurl}}\img\Tetris\upstacking3.png)This surface has no place for the S- and Z-pieces.
 
+A surface that accommodates all pieces is one that contains both bumps and flat areas. It's quite important to capture and remember the characteristics of all minos.
+
+##### Mino O
+
+The O-piece below needs a flat surface.
+
+![O1]({{baseurl}}\img\Tetris\O_1.png) :x:
+![O2]({{baseurl}}\img\Tetris\O_2.png) :o:
+![O3]({{baseurl}}\img\Tetris\O_3.png) :x:
+![O4]({{baseurl}}\img\Tetris\O_4.png) :o:
 
 
 

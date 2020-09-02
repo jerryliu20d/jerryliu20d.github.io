@@ -34,10 +34,10 @@ A surface that accommodates all pieces is one that contains both bumps and flat 
 
 The O-piece below needs a flat surface.
 
-![O1]({{baseurl}}\img\Tetris\O_1.png) :x:
-![O2]({{baseurl}}\img\Tetris\O_2.png) :o:
-![O3]({{baseurl}}\img\Tetris\O_3.png) :x:
-![O4]({{baseurl}}\img\Tetris\O_4.png) :o:
+![O1]({{baseurl}}\img\Tetris\O_1.png) ❌
+![O2]({{baseurl}}\img\Tetris\O_2.png) ⭕️
+![O3]({{baseurl}}\img\Tetris\O_3.png) ❌
+![O4]({{baseurl}}\img\Tetris\O_4.png) ⭕️
 
 
 

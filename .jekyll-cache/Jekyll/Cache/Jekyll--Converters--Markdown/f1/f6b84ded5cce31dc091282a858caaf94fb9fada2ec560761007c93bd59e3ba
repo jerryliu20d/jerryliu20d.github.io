@@ -1,0 +1,244 @@
+I"±%<link rel="stylesheet" href="/assets/css/syntax.css" />
+
+<h1 id="logic-of-exists">Logic of EXISTS</h1>
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">EXISTS</code> is a frequently used SQL function.</p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">EXISTS</code> will return the boolean value whether the condition is satisfied or not.
+For example, suppose we have the following tables:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>A<sub>1</sub></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>A<sub>2</sub></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>A<sub>3</sub></td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>UID</th>
+      <th>NAME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>B<sub>1</sub></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>B<sub>2</sub></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2</td>
+      <td>B<sub>3</sub></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ID</span><span class="p">,</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">A</span> <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">B</span> <span class="k">WHERE</span> <span class="n">A</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="n">B</span><span class="p">.</span><span class="n">UID</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>the output is:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>A<sub>1</sub></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>A<sub>2</sub></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As we can see that the function is excuted by rows. It only return those rows satisfied the condition.</p>
+
+<p><code class="language-plaintext highlighter-rouge">EXISTS</code> will not save the result of the query result of the condition because it doesnot matter. It only return the boolean result according to whther the query is empty or not. The logic of <code class="language-plaintext highlighter-rouge">EXISTS</code> looks like the following codes:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">exists</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ID</span><span class="p">):</span>
+        <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<p>From the above codes we will find that the <code class="language-plaintext highlighter-rouge">EXISTS</code> is preferred when table B is larger than table A.</p>
+
+<h1 id="compare-with-in">Compare with IN</h1>
+
+<p>We still use the previous table. But we use <code class="language-plaintext highlighter-rouge">IN</code> instead.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">ID</span><span class="p">,</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">A</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">UID</span> <span class="k">FROM</span> <span class="n">B</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>It is equivelant to the following codes:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ID</span> <span class="o">==</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">UID</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">break</span>
+<span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<p>The function <code class="language-plaintext highlighter-rouge">IN</code> will only be executed once, but it will traversal all elements in A and B, which may takes $O(mn)$.</p>
+
+<h1 id="a-small-example">A small example</h1>
+
+<p>Suppose we have the following table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Rice Ball</td>
+      <td>1.99</td>
+      <td>2019-03-22</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Soy Drink</td>
+      <td>3.69</td>
+      <td>2019-03-23</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Pork Sung</td>
+      <td>13.99</td>
+      <td>2019-03-24</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Hot Chili</td>
+      <td>4.99</td>
+      <td>2019-03-21</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Mushroom</td>
+      <td>0.59</td>
+      <td>2019-03-22</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We want to find the data with newest date for each amount.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="n">Amount</span><span class="p">,</span> <span class="n">Product</span><span class="p">,</span> <span class="n">Price</span><span class="p">,</span> <span class="nb">Date</span>
+<span class="k">FROM</span> <span class="k">table</span> <span class="n">t</span>
+<span class="k">WHERE</span> <span class="p">(</span><span class="k">NOT</span> <span class="k">EXISTS</span>
+          <span class="p">(</span><span class="k">SELECT</span> <span class="n">Amount</span><span class="p">,</span> <span class="n">Product</span><span class="p">,</span> <span class="n">Price</span><span class="p">,</span> <span class="nb">Date</span> <span class="k">FROM</span> <span class="k">table</span> 
+         <span class="k">WHERE</span> <span class="n">Amount</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">Amount</span> <span class="k">AND</span> <span class="nb">Date</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">.</span><span class="nb">Date</span><span class="p">))</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Pork Sung</td>
+      <td>13.99</td>
+      <td>2019-03-24</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Mushroom</td>
+      <td>0.59</td>
+      <td>2019-03-22</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If we use <code class="language-plaintext highlighter-rouge">DISTINCT</code>, we will still get the raw table, because the <code class="language-plaintext highlighter-rouge">DISTINCT</code> will apply on all selected columns.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">Amount</span><span class="p">,</span> <span class="n">Product</span><span class="p">,</span> <span class="n">Price</span><span class="p">,</span> <span class="nb">Date</span> <span class="k">FROM</span> <span class="k">table</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Rice Ball</td>
+      <td>1.99</td>
+      <td>2019-03-22</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Soy Drink</td>
+      <td>3.69</td>
+      <td>2019-03-23</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Pork Sung</td>
+      <td>13.99</td>
+      <td>2019-03-24</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Hot Chili</td>
+      <td>4.99</td>
+      <td>2019-03-21</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Mushroom</td>
+      <td>0.59</td>
+      <td>2019-03-22</td>
+    </tr>
+  </tbody>
+</table>
+:ET

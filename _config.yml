@@ -1,7 +1,8 @@
 # Site settings
 title: Jerry Blog
 SEOTitle: Easy Code | Jerry Blog
-header-img: img/post-bg-desk.jpg
+header-img: img/main-bg.jpg
+# <a href='https://www.freepik.com/free-photos-vectors/background'>Background vector created by liuzishan - www.freepik.com</a>
 email: jerryliu20d@gmail.com
 description: "If debugging is the process of removing bugs, programming must be the process of putting them in~"
 keyword: "Jerry Liu, Jerry Blog, lijieliu, algorithm， python"

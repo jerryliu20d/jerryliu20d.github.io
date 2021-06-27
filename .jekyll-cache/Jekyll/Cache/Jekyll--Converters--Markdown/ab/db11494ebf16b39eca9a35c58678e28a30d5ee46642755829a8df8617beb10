@@ -1,0 +1,69 @@
+I"A<h1 id="description">Description</h1>
+
+<p>Given a binary tree, return the inorder traversal of its nodes’ values. Here the inorder means [left root right]. LeetCode <a href="https://leetcode.com/problems/binary-tree-inorder-traversal/">here</a>.</p>
+
+<h1 id="recursive-solution">Recursive Solution</h1>
+
+<p>It’s quite easy, we jump to the code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Inorder_rec</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">helper</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">Node</span><span class="p">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">helper</span><span class="p">(</span><span class="n">Node</span><span class="p">.</span><span class="n">left</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Node</span><span class="p">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">helper</span><span class="p">(</span><span class="n">Node</span><span class="p">.</span><span class="n">right</span><span class="p">)</span>
+
+    <span class="n">helper</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="iterative-solution">Iterative Solution</h1>
+
+<p>We need a stack to save the traversed nodes. All elements in the stack should satisfy the following condition:</p>
+<ol>
+  <li>The left child (if exist) of the node is traversed.</li>
+  <li>The node value has not been saved to output list.</li>
+  <li>the right child (if exist) of the node is not traversed.
+Go through the left child until it donot have left child. Then go back to its parent node by popping from the stack. Save the value of the parent node. Then go to the right child of the parent node. if right child not exist, pop parent node from the stack and do the same things as before until find a parent which has right child.</li>
+</ol>
+
+<p>Then when should we stop? Shall we stop when the satck is empty?
+Not exactly true. Remember that when you go back to the root, the stack is empty but you have not checked the right child of the root yet. So the stop condition should be:</p>
+<ol>
+  <li>The stack is empty.</li>
+  <li>The current Node donot have right child.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Inorder</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">Node</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Now</span> <span class="o">=</span> <span class="n">Node</span>
+    <span class="n">traveled</span> <span class="o">=</span> <span class="p">[</span><span class="n">Now</span><span class="p">]</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">Now</span><span class="p">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">Now</span> <span class="o">=</span> <span class="n">Now</span><span class="p">.</span><span class="n">left</span>
+            <span class="n">traveled</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Now</span><span class="p">)</span>
+        <span class="n">output</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Now</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">traveled</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">Now</span><span class="p">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">Now</span> <span class="o">=</span> <span class="n">Now</span><span class="p">.</span><span class="n">right</span>
+            <span class="n">traveled</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Now</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">while</span> <span class="ow">not</span> <span class="n">Now</span><span class="p">.</span><span class="n">right</span><span class="p">:</span>
+                    <span class="n">Now</span> <span class="o">=</span> <span class="n">traveled</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">output</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Now</span><span class="p">.</span><span class="n">val</span><span class="p">)</span>
+                <span class="n">Now</span> <span class="o">=</span> <span class="n">Now</span><span class="p">.</span><span class="n">right</span>
+                <span class="n">traveled</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">Now</span><span class="p">)</span>
+            <span class="k">except</span> <span class="nb">IndexError</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                <span class="k">return</span>
+</code></pre></div></div>
+
+<p>Similar Problem: <a href="/2019/03/23/LeetCode-145/">LeetCode 145 Binary Tree Postorder Traversal</a></p>
+
+<p>And here is another similar question for you: Binary Tree Preorder Traversal. LeetCode <a href="https://leetcode.com/problems/binary-tree-preorder-traversal/">here</a>.</p>
+:ET

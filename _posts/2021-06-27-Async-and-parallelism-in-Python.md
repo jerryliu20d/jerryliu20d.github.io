@@ -4,7 +4,7 @@ title:      Async and parallelism in Python
 subtitle:   
 date:       2021-06-19
 author:     Jerry Liu
-header-img: img/sync_Zotero/
+header-img: 
 catalog: true
 tags:
     - Python

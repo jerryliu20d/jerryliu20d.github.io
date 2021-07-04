@@ -83,3 +83,13 @@
   color: #83a598;
 }
 pre[class='highlight'] {background-color:#282828;}
+
+.hiddenblock {
+  background-color: #000000;
+  color: #000000;
+  display: inline-block;
+}
+.hiddenblock ss:hover {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}

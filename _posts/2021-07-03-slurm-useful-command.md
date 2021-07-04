@@ -7,8 +7,7 @@ author:     Jerry Liu
 header-img: img/SLURM.png
 catalog: true
 tags:
-    - Python
-    - Parallelism
+    - SLURM
 ---
 
 # Job status related command

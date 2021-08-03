@@ -43,6 +43,11 @@ to list status info for a currently running job, issue:
 sstat --format=AveCPU,AvePages,AveRSS,AveVMSize,JobID -j <jobid> --allsteps
 ```
 
+- More details when connet to the nodes
+```
+ssh nova056
+top
+```
 
 # Partition status
 
